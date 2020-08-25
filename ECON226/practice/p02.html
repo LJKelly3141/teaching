@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Practice: Calculating Mean, Standard Deviation, and Frequencies in R</title>
+    <style>
+* {
+  box-sizing: border-box;
+}
+
+/* Create two equal columns that floats next to each other */
+.column {
+  padding: 10px;
+  overflow: auto;
+}
+    
+.left {
+  float: left;
+  width: 50%;
+
+}
+
+.right {
+  width: 50%;
+}
+
+.full {
+  width: 100%;
+}      
+
+.row {
+  width: 1200px;
+  padding: 10px;
+  min-height: 150; 
+}
+      
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  clear: both;
+}
+
+.r_iframe {
+  border: 0;
+  overflow: auto; 
+  width: 100%; 
+  min-height: 400px; 
+  position: relative;
+  
+}
+      
+.vt_iframe {
+  border: 0;
+  overflow: auto; 
+  width: 720;
+  height: 405;
+  position: relative;
+}
+        
+.unselectable {
+        -webkit-user-select: none;
+        -webkit-touch-callout: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+      
+.plain {
+  margin: 15px; 
+}
+
+#rcorners {
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #d3d3d3;
+  padding: 10px;  
+}
+
+.button {
+  background-color: #4CAF50;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+</style> </head>
+  <body>
+    <div class="row">
+      <div class="column full">
+        <h2> Directions </h2>
+        <hr>
+        <p> In this practice exercise, you will load data into R, and Summarize
+          that data. You will use the following R functions: read.table, names,
+          head, summary, attach, table, mean, median, var, sd, min, max, range,
+          quantile, cor. Watch the VoiceThread below. Please add comments if you
+          have questions. Once you have watched the VoiceThread read the
+          instructions and use R to answer the questions bellow. </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="column full">
+        <p> <iframe src="https://voicethread.com/app/player/?threadId=15107679"
+
+            allowusermedia="" allowfullscreen="" allow="camera https://voicethread.com; microphone https://voicethread.com; fullscreen https://voicethread.com;"
+
+            height="405" frameborder="0" width="720"> </iframe> </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="column full">
+        <h2> A closer look at the code </h2>
+        <hr>
+        <p> The data that will being used in this practice exercise can be found
+          here: http://tiny.cc/econ226/data/LungCapData.txt. The following code
+          can be used to load the data <br>
+        </p>
+        <p><code> LungCapData &lt;-
+            read.table(file="http://tiny.cc/econ226/data/LungCapData.txt",
+            header = T, sep = "\t") </code></p>
+        <p> The <code> &lt;- </code> symbol is used to store “into” a
+          variable, so here we are storing the data into LungCapData. </p>
+        <p> It is always good practice to make sure the data loaded the way you
+          expect. In R this can be done with the commands <code>names</code>
+          and <code>head</code>. </p>
+        <p><code> names(LungCapData) <br>
+          </code></p>
+        <p><code>head(LungCapData) </code> </p>
+        <p> <code>names</code> prints the names of all variables in the data
+          set. A data set like LungCapData is called a data frame in R, <code>head</code>
+          prints the first few rows of a data frame.We can use either <code>attach</code>
+          or <code>$</code> to access an individual variable within a data
+          frame. For example, we can summarize LungCap, a variable in
+          LungCapData, by either <br>
+          <br>
+          <code>summary(LungCapData$LungCap)</code><br>
+          <br>
+          or<br>
+          <code> attach(LungCapData)<br>
+            summary(LungCap) <br>
+          </code> <br>
+          Once <code>attach(LungCapData)</code> is run, we no longer need to
+          tell R where to look for the variable LungCap. </p>
+        <p> The table command creates a counts of categorical data. For example,
+          this data set contains a variable, Smoke, that takes the value “no”
+          for non-smokers and “yes” for smokers. The command<br>
+          <br>
+          <code>table(Smoke)</code><br>
+          <br>
+          creates a frequency table of smokers, and<br>
+          <br>
+          <code>table(Smoke)/length(Smoke)</code><br>
+          <br>
+          creates a proportion table. Note <code>length</code> returns the
+          number of observations in Smoke. </p>
+        <p> The rest of the command are straight forward to use. Here is a
+          complete listing of code with comments used in the VoiceThread. </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="column full">
+        <h2> R code used in the VoiceThread </h2>
+        <p class="unselectable" id="rcorners"> <code> # Load data <br>
+            LungCapData &lt;-
+            read.table(file="http://tiny.cc/econ226/data/LungCapData.txt",
+            header = T, sep = "\t") <br>
+            <br>
+            # First look at the data <br>
+            names(LungCapData) # print the names of all variables in the data
+            frame<br>
+            head(LungCapData) # print the first few rows of the data frame<br>
+            <br>
+            # Summarize a variable<br>
+            summary(LungCapData$LungCap) # access a variable within a data frame
+            by using the $<br>
+            attach(LungCapData) # or use the attach function to avoid retyping
+            the name of the data frame<br>
+            summary(LungCap)<br>
+            <br>
+            # Frequency table<br>
+            table(Smoke) # create a table with the number of smokers and
+            non-smokers<br>
+            table(LungCapData$Smoke) # this does the same thing without the
+            attach command<br>
+            <br>
+            # Proportion<br>
+            table(Smoke)/length(Smoke) # divides the number of smokers by non
+            smokers to give proportions<br>
+            table(Smoke)/length(Smoke) * 100 # multiply by 100 to get a percent<br>
+            <br>
+            # Two-way frequency table<br>
+            table(Smoke,Gender)<br>
+            <br>
+            # Mean<br>
+            mean(LungCap) # Average of the numeric variable<br>
+            mean(LungCap, trim =0.10) # trimmed mean, i.e. drops the larges 10%
+            and smallest 10%<br>
+            <br>
+            # Median<br>
+            median(LungCap)<br>
+            <br>
+            # Varience and Standard Deviation<br>
+            var(LungCap)<br>
+            sd(LungCap)<br>
+            <br>
+            # Min, max and range<br>
+            min(LungCap) # lowest lung capacity<br>
+            max(LungCap) # greatest lung capacity<br>
+            range(LungCap) # max lung capacity minus min lung capacity<br>
+            <br>
+            # Percentile<br>
+            quantile(LungCap, probs = 0.90)<br>
+            quantile(LungCap, probs = c(0.20,0.50,0.90,1.00))<br>
+            <br>
+            # Correlation<br>
+            cor(LungCap,Age)<br>
+          </code> </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="column full">
+        <h2> Now you try </h2>
+        <hr>
+        <ol>
+          <li> How many subjects in this sample smoke? What percentage of the
+            subjects in this sample are non-smokers? </li>
+          <li>How man male subjects in the sample smoke? </li>
+          <li>What is the average lung capacity for all subjects in the sample?
+          </li>
+          <li>What is the standard deviation of lung capacity for all subjects
+            in the sample? </li>
+          <li>What is the correlation between Lung Capacity and Age? </li>
+        </ol>
+        <p> <iframe class="r_iframe" name="student_r" src="https://rdrr.io/snippets/embed/?code=%23%20Load%20data%0ALungCapData%20%3C-%20read.table%28file%3D%22http%3A%2F%2Ftiny.cc%2Fecon226%2Fdata%2FLungCapData.txt%22%2C%20header%20%3D%20T%2C%20sep%20%3D%20%22%5Ct%22%29%0A">
+          </iframe> </p>
+      </div>
+    </div>
+  </body>
+</html>
