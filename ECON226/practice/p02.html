@@ -16,12 +16,12 @@
     
 .left {
   float: left;
-  width: 50%;
+  width: 35%;
 
 }
 
 .right {
-  width: 50%;
+  width: 65%;
 }
 
 .full {
@@ -117,8 +117,8 @@
         <h2> A closer look at the code </h2>
         <hr>
         <p> The data that will being used in this practice exercise can be found
-          here: http://tiny.cc/econ226/data/LungCapData.txt. The following code
-          can be used to load the data <br>
+          here: <a href="http://tiny.cc/econ226/data/LungCapData.txt">http://tiny.cc/econ226/data/LungCapData.txt</a>. The
+          following code can be used to load the data <br>
         </p>
         <p><code> LungCapData &lt;-
             read.table(file="http://tiny.cc/econ226/data/LungCapData.txt",
@@ -226,19 +226,47 @@
       <div class="column full">
         <h2> Now you try </h2>
         <hr>
+        <p>
+        Use R and the mtcars data set to answer the following questions (this is just for practice you do not need to turn anything in). 
+        </p>
         <ol>
-          <li> How many subjects in this sample smoke? What percentage of the
-            subjects in this sample are non-smokers? </li>
-          <li>How man male subjects in the sample smoke? </li>
-          <li>What is the average lung capacity for all subjects in the sample?
-          </li>
-          <li>What is the standard deviation of lung capacity for all subjects
-            in the sample? </li>
-          <li>What is the correlation between Lung Capacity and Age? </li>
-        </ol>
-        <p> <iframe class="r_iframe" name="student_r" src="https://rdrr.io/snippets/embed/?code=%23%20Load%20data%0ALungCapData%20%3C-%20read.table%28file%3D%22http%3A%2F%2Ftiny.cc%2Fecon226%2Fdata%2FLungCapData.txt%22%2C%20header%20%3D%20T%2C%20sep%20%3D%20%22%5Ct%22%29%0A">
-          </iframe> </p>
+          <li>How many cars in this sample have 6 cylinders? (cyl is the number of cylinders) </li>
+          <li>What percentage of the cars in this sample are 4 cylinders?</li>
+          <li>How many cars in the sample have an automatic Transmission and are V-shaped? 'am' is transmission type (0 = automatic, 1 = manual) and 'vs' is	engine shape (0 = V-shaped, 1 = straight)</li>
+          <li>What is the average miles per gallon (mpg) for all cars in the sample?</li>
+          <li>What is the correlation between mpg and horsepower (hp)?</li>
+        </ol>    
       </div>
     </div>
+    
+    <div class="row">
+      <div class="column left">
+        <p class="unselectable" id="rcorners"> <code> 
+          # Question 1 <br>
+          table(cyl) <br>
+          <br>
+          # Question 2 <br>
+          table(cyl)/length(cyl) * 100 <br>
+          <br>
+          # Question 3 <br>
+          table(am,vs) <br>
+          <br>
+          # Question 4 <br>
+          mean(mpg) <br>
+          <br>
+          # Question 5 <br>
+          cor(mpg,hp) <br>
+          </code> </p>
+        <button class="button" onclick="var ifr=document.getElementsByName('student_r')[0]; ifr.src=ifr.src;">Reset
+          Your R Window</button> </div>
+      <div class="column right">
+       <p> <iframe class="r_iframe" name="student_r" 
+            src="https://rdrr.io/snippets/embed/?code=data(%22mtcars%22)%0Aattach(mtcars)%20"     
+                   </iframe> </p>
+      </div>
+    </div>    
+    
+    
+    
   </body>
 </html>
