@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Practice: Bar plot in R</title>
+    <style>
+* {
+  box-sizing: border-box;
+}
+
+/* Create two equal columns that floats next to each other */
+.column {
+  padding: 10px;
+  overflow: auto;
+}
+    
+.left {
+  float: left;
+  width: 50%;
+
+}
+
+.right {
+  width: 50%;
+}
+
+.full {
+  width: 100%;
+}      
+
+.row {
+  width: 1000px;
+  padding: 10px;
+  min-height: 150; 
+}
+      
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  clear: both;
+}
+
+.r_iframe {
+  border: 0;
+  overflow: auto; 
+  width: 100%; 
+  min-height: 400px; 
+  position: relative;
+  
+}
+      
+.vt_iframe {
+  border: 0;
+  overflow: auto; 
+  width: 720;
+  height: 405;
+  position: relative;
+}
+        
+.unselectable {
+        -webkit-user-select: none;
+        -webkit-touch-callout: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+      
+.plain {
+  margin: 15px; 
+}
+
+#rcorners {
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #d3d3d3;
+  padding: 10px;  
+}
+
+.button {
+  background-color: #4CAF50;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+</style> </head>
+  <body style="    background-color: #FFFFFF;">
+    <div class="row">
+      <div class="column full">
+        <h2> Directions </h2>
+        <hr>
+        <p> In this practice exercise, you will load data into R, and create a
+          bor plot. </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="column full">
+        <p> <iframe src="https://voicethread.com/app/player/?threadId=15107746"
+            allowusermedia="" allowfullscreen="" allow="camera https://voicethread.com; microphone https://voicethread.com; fullscreen https://voicethread.com;"
+            height="405" frameborder="0" width="720"> </iframe> </p>
+      </div>
+    </div>
+    <div class="row">
+        <div class="column full">
+            <h2> A closer look at the code </h2>
+            <hr>
+                <p>In this practice, we will be looking into a few slightly more advanced commands. We will use the mtcars data set to calculate average miles per gallon by the number of cylinders. Then we will make a bar plot of the averages. </p>
+                <h3>Let's make a simple bar plot</h3>
+                    <p>We are going to be working with the mtcars dataset to create a nice looking bar plot. In the code window below, I have the code necessary to make a simple bar plot. Press the Run button to see the plot.</p>
+                    <p>To make this plot, we need to first create a table,</p>
+                    <p><BLOCKQUOTE><code>table1 &lt- table(mtcars$cyl)</code></BLOCKQUOTE></p>
+                    <p>then we use the <code>barplot()</code> command to draw the bar plot, </p>
+                    <p><BLOCKQUOTE><code>barplot(table1)</code></BLOCKQUOTE></p>
+                    <p>Click the Run button below the code window to see the R output. </p>
+                    <p> 
+                    <iframe width='100%' height='850' scrolling='no' src='https://rdrr.io/snippets/embed/?code=%23%20Load%20ggplot2%20and%20data%0AsuppressMessages(library(tidyverse))%0Adata(%22mtcars%22)%0A%0A%23%20Bar%20plot%20cyl%20count%20in%20base%20R%0Atable1%20%3C-%20table(mtcars%24cyl)%0Abarplot(table1)' frameborder='0'></iframe>
+                    </p>
+                <h3>Let’s add a title and label the x-axis</h3>
+                    <p>The plot we just made is OK, but unless you know that this is the number of cars in the data set with 4, 6, and 8 cylinders, respectively, it does not tell you very much. So let’s add a title and label the x-axis.</p>
+                    <p>To add a title, we add the argument <code>main</code> to the <code>barplot()</code> command. <code>main</code> holds a string that will be used as the title of the plot (Note: a string is a variable that holds text).</p>
+                    <p><BLOCKQUOTE><code> barplot(table1,<mark>main="Car Frequency by Number of Cylinders"</mark>,xlab="Number of Cylinders")</code></BLOCKQUOTE></p>
+                    <p>Next, lets add a label to the x-axis. This is done with the <code>xlab</code> argument.</p>
+                    <p><BLOCKQUOTE><code> barplot(table1,main="Car Frequency by Number of Cylinders",<mark>xlab="Number of Cylinders"</mark>)</code></BLOCKQUOTE></p>
+                    <p>Click the Run button below the code window to see the R output. </p>
+                    <p> 
+                    <iframe width='100%' height='850' scrolling='no' src='https://rdrr.io/snippets/embed/?code=%23%20Load%20ggplot2%20and%20data%0AsuppressMessages(library(tidyverse))%0Adata(%22mtcars%22)%0A%0A%23%20Bar%20plot%20cyl%20count%20in%20base%20R%0Atable1%20%3C-%20table(mtcars%24cyl)%0Abarplot(table1%2Cmain%3D%22Car%20Frequency%20by%20Number%20of%20Cylinders%22%2Cxlab%3D%22Number%20of%20Cylinders%22)' frameborder='0'></iframe>
+                    </p>
+                <h3>Let’s calculate average miles per gallon by the number of cylinders</h3>
+                    <p>A frequency plot of cars by the number of cylinders is somewhat interesting. Still, it doesn’t tell us much about the relationship between variables in the data set. Let’s see how the number of cylinders impacts mile per gallon by calculating average miles per gallon for cars with 4, 6 and 8 cylinders.<p>
+
+                    <p>To do this, we need the pipe operator, <code>%&gt%</code>. The pipe operator basically means “with this do that.” In other words, A <code>%&gt%</code> B means, with A do B. No let’s look at the following command, </p>
+
+                    <p><BLOCKQUOTE><code>mpg.avg &lt- mtcars %&gt% group_by(cyl) %&gt% summarize(mpg_cyl = mean(mpg))</code></BLOCKQUOTE></p>
+
+                    <p>which means: group <code>mycars</code> by number of cylinders, then find the average miles per gallon for each group and store the whole thing in <code>mpg.avg</code>. Don't worry if you don't fully understand this command yet, you will get it in time.</p>
+
+                    <p>Click the Run button below the code window to see the R output. Notice that the output is not the same as the <code>table()</code> command. For now, think of <code>mpg.avg</code> as a new data frame.</p>
+                    <p> 
+                    <iframe width='100%' height='500' scrolling='no' src='https://rdrr.io/snippets/embed/?code=%23%20Load%20ggplot2%20and%20data%0AsuppressMessages(library(tidyverse))%0Adata(%22mtcars%22)%0A%0A%23%20Calculate%20avg%20mpg%20by%20number%20of%20cylinders%0Ampg.avg%20%3C-%20mtcars%20%25%3E%25%20group_by(cyl)%20%25%3E%25%20summarize(mpg_cyl%20%3D%20mean(mpg))%0A%0A%23%20Display%20average%20by%20number%20of%20cylinders%0Ampg.avg' frameborder='0'></iframe>
+                    </p>
+                <h3>Let’s make a bar plot of average miles per gallon by the number of cylinders</h3>
+                    <p> Now let’s use what we have learned to make a super cool bar plot that shows how mpg relates to the number cylinders in an engine.</p>
+                    <p><code>mpg.avg</code> is not a table, so we need to tell R which variable should be used to set the height of each bar and which variable should be used to label the bars. We do this by passing <code>barplot()</code> the arguments <code>height</code> and <code>names.arg</code>. The height of the bars should be the average mpg,</p>
+                    <p><BLOCKQUOTE><code>height = mpg.avg$mpg_cyl</code></BLOCKQUOTE></p>
+                    <p>and the names should be the number of cylinders,</p>
+                    <p><BLOCKQUOTE><code>names.arg = mpg.avg$cyl</code></BLOCKQUOTE></p>
+                    <p>Put it all together and we have,</p>
+                    <p><BLOCKQUOTE><code>barplot(height = mpg.avg$mpg_cyl, names.arg = mpg.avg$cyl)</code></BLOCKQUOTE></p>
+                    <p>Click the Run button below the code window to see the R output. Notice that the plot has no title or axis labels and the y-axis is not quite right. We should fix that!</p>
+                    <p> 
+                    <iframe width='100%' height='850' scrolling='no' src='https://rdrr.io/snippets/embed/?code=%23%20Load%20ggplot2%20and%20data%0AsuppressMessages(library(tidyverse))%0Adata(%22mtcars%22)%0A%0A%23%20Calculate%20avg%20mpg%20by%20number%20of%20cylinders%0Ampg.avg%20%3C-%20mtcars%20%25%3E%25%20group_by(cyl)%20%25%3E%25%20summarize(mpg_cyl%20%3D%20mean(mpg))%0A%0Abarplot(height%20%3D%20mpg.avg%24mpg_cyl%2C%20names.arg%20%3D%20mpg.avg%24cyl)' frameborder='0'></iframe>
+                    </p>
+                <h3>Let’s make the bar plot better</h3>
+            
+                    <p> 
+                    <iframe width='100%' height='1000' scrolling='no' src='https://rdrr.io/snippets/embed/?code=suppressMessages(library(tidyverse))%0Adata(%22mtcars%22)%0Ampg.avg%20%3C-%20mtcars%20%25%3E%25%20group_by(cyl)%20%25%3E%25%20summarize(mpg_cyl%20%3D%20mean(mpg))%0A%0Ampg.avg.barplot%20%3C-%20barplot(height%20%3D%20mpg.avg%24mpg_cyl%2C%20%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20names.arg%20%3D%20mpg.avg%24cyl%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20main%3D%22Average%20MPG%20by%20Number%20of%20Cylinders%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20xlab%3D%22Number%20of%20Cylinders%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20ylab%3D%22Average%20MPG%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20ylim%20%3D%20c(0%2C30))%0A%0Ampg.avg.barplot%20%3C-%20text(x%3Dmpg.avg.barplot%2C%20%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20y%3Dmpg.avg%24mpg_cyl%2B2%2C%20%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20labels%3Das.character(round(mpg.avg%24mpg_cyl%2C2)))%0Ampg.avg.barplot'  frameborder='0'></iframe>
+                    </p>
+        </div>
+    </div>
+    <div class="row">
+      <div class="column full">
+        <h2> R code used in the VoiceThread </h2>
+        <p class="unselectable" id="rcorners"> <code> 
+            # Load ggplot2 and data <br>
+            library(tidyverse)<br>
+            <br>
+            data &lt- mtcars <br>
+            data$cyl &lt- as.factor(data$cyl)<br>
+            <br>
+            # Bar plot in base R<br>
+            barplot( table(data$cyl) )<br>
+            <br>
+            # Bar plot in ggplot2<br>
+            data %&gt% ggplot(aes(x = cyl)) +<br>
+            geom_bar()<br>
+            <br>
+            # Bar plot with swapped axes<br>
+            data %&gt% ggplot(aes(x = cyl)) +<br>
+            geom_bar(aes(fill = cyl)) + <br>
+            coord_flip()<br>
+            <br>
+            # Create a summary table of avg mpg by cylindar<br>
+            table2 &lt- data %&gt% group_by(cyl) %&gt% <br>
+                   summarize(avg_mpg = mean(mpg))<br>
+            <br>
+            table2<br>
+            <br>
+            # Bar plot with bar height set to a summary value<br>
+            table2 %>% ggplot(aes(x = cyl, y = avg_mpg)) +<br>
+            geom_bar(aes(fill = cyl)) <br>
+          </code> </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="column full">
+        <h2> Now you try </h2>
+        <hr>
+        <p> Use R to complete the following activities
+          (this is just for practice you do not need to turn anything in). </p>
+        <ol>
+          <li>Plot values1 vs. year. Put year on the
+            x-axis and values1 on the y-axis</li>
+          <li>Add points to the plot.</li>
+        </ol>
+      </div>
+    </div>
+    <div class="row">
+      <div class="column left">
+        <p class="unselectable" id="rcorners"> <code> # Question 1 <br>
+            plot(x = year, y = values1, type='l')<br>
+            <br>
+            # Question 2 <br>
+            points(x = year, y = values1) <br>
+          </code> </p>
+        <button class="button" onclick="var ifr=document.getElementsByName('student_r')[0]; ifr.src=ifr.src;">Reset
+          Your R Window</button> </div>
+      <div class="column right">
+        <p> 
+          <iframe class="r_iframe" name="student_r" src='https://rdrr.io/snippets/embed/?code=data%20%3C-%20data.frame(year%3Dc(1960%3A2019)%2C%0A%20%20%20%20values1%20%3D%20runif(60%2C%20-1%2C%201)%20*%2010%20%2B%201%3A60)%0Aattach(data)%0A' frameborder="0"></iframe>
+          </p>
+      </div>
+    </div>
+  </body>
+</html>
