@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Practice: Calculating Mean, Standard Deviation, and Frequencies in R</title>
+    <style>
+* {
+  box-sizing: border-box;
+}
+
+/* Create two equal columns that floats next to each other */
+.column {
+  padding: 10px;
+  overflow: auto;
+}
+    
+.left {
+  float: left;
+  width: 50%;
+
+}
+
+.right {
+  width: 50%;
+}
+
+.full {
+  width: 100%;
+}      
+
+.row {
+  width: 1000px;
+  padding: 10px;
+  min-height: 150; 
+}
+      
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  clear: both;
+}
+
+.r_iframe {
+  border: 0;
+  overflow: auto; 
+  width: 100%; 
+  min-height: 400px; 
+  position: relative;
+  
+}
+      
+.vt_iframe {
+  border: 0;
+  overflow: auto; 
+  width: 720;
+  height: 405;
+  position: relative;
+}
+        
+.unselectable {
+        -webkit-user-select: none;
+        -webkit-touch-callout: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+      
+.plain {
+  margin: 15px; 
+}
+
+#rcorners {
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #d3d3d3;
+  padding: 10px;  
+}
+
+.button {
+  background-color: #4CAF50;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+</style> </head>
+  <body style="    background-color: #FFFFFF;">
+    <div class="row">
+      <div class="column full">
+        <h2> Directions </h2>
+        <hr>
+        <p> In this practice exercise, you will load data into R, and create a
+          line plot. </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="column full">
+        <p> <iframe src="https://voicethread.com/app/player/?threadId=15107729"
+            allowusermedia="" allowfullscreen="" allow="camera https://voicethread.com; microphone https://voicethread.com; fullscreen https://voicethread.com;"
+            height="405" frameborder="0" width="720"> </iframe> </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="column full">
+        <h2> A closer look at the code </h2>
+        <hr>
+        <p> Before we begin, do not worry about the first bit of code (see
+          below). All it does is create some fake data and store it into a data
+          frame so that we can plot it. </p>
+        <p> <code> # Loads the tidyverse package <br>
+            library(tidyverse) <br>
+            <br>
+            data <- data.frame(year=c(1960:2019), <br>
+            values1 = runif(60, -1, 1) * 10 + 1:60,<br>
+            values2 = runif(60, -1, 1) * 5 + (1:60) * 0.5,<br>
+            values3 = runif(60, -1, 1) * 7 + 30 - (1:60)/3)<br>
+          </code> </p>
+        <p> The <code>plot</code> command creates plots in R. </p>
+        <p> <code>plot(x = data$year, y = data$values1, type='l')</code> </p>
+        <p> We pass the <code>plot</code> command 3 arguments, or information
+          the command needs to function. <code>x</code> is the variable to be
+          measured on the x-axis, i.e. the horizontal axis, and <code>y</code>
+          is the variable to be measured on the y-axis, i.e. the vertical axis.
+          Note that we are using the $ notation. <code>type='l'</code>
+          indicates to R to draw a line plot.</p>
+        <p> The <code>points</code> command adds points to the plots in R. </p>
+        <p> <code>ggplot</code> is a very powerful data visualization package,
+          but we will not cover <code>ggplot</code> until later. </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="column full">
+        <h2> R code used in the VoiceThread </h2>
+        <p class="unselectable" id="rcorners"> <code> # Loads the tidyverse
+            package <br>
+            library(tidyverse) <br>
+            <br>
+            # Creates some fake data to plot <br>
+            data <- data.frame(year=c(1960:2019), <br>
+            values1 = runif(60, -1, 1) * 10 + 1:60,<br>
+            values2 = runif(60, -1, 1) * 5 + (1:60) * 0.5,<br>
+            values3 = runif(60, -1, 1) * 7 + 30 - (1:60)/3)<br>
+            <br>
+            # Line plot in base R<br>
+            plot(x = data$year, y = data$values1, type='l')<br>
+            <br>
+            # Add points to plot<br>
+            points(x = data$year, y = data$values1)<br>
+            <br>
+            # Line plot in ggplot2<br>
+            data %＞% ggplot(aes(x = year, y = values1)) +<br>
+            geom_line()<br>
+            <br>
+            # Line plot in ggplot2 with groups<br>
+            data %＞% gather(key = "group", value = "values", -year) %＞%<br>
+            ggplot(aes(x = year, y = values, color = group)) +<br>
+            geom_line(lwd = 1.5) +<br>
+            geom_smooth(method = 'lm') +<br>
+            scale_color_manual(values = c("tomato3","goldenrod","skyblue2"))<br>
+          </code> </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="column full">
+        <h2> Now you try </h2>
+        <hr>
+        <p> Use R to complete the following activities
+          (this is just for practice you do not need to turn anything in). </p>
+        <ol>
+          <li>Plot values1 vs. year. Put year on the
+            x-axis and values1 on the y-axis</li>
+          <li>Add points to the plot.</li>
+        </ol>
+      </div>
+    </div>
+    <div class="row">
+      <div class="column left">
+        <p class="unselectable" id="rcorners"> <code> # Question 1 <br>
+            plot(x = year, y = values1, type='l')<br>
+            <br>
+            # Question 2 <br>
+            points(x = year, y = values1) <br>
+          </code> </p>
+        <button class="button" onclick="var ifr=document.getElementsByName('student_r')[0]; ifr.src=ifr.src;">Reset
+          Your R Window</button> </div>
+      <div class="column right">
+        <p> 
+          <iframe class="r_iframe" name="student_r" src='https://rdrr.io/snippets/embed/?code=data%20%3C-%20data.frame(year%3Dc(1960%3A2019)%2C%0A%20%20%20%20values1%20%3D%20runif(60%2C%20-1%2C%201)%20*%2010%20%2B%201%3A60)%0Aattach(data)%0A' frameborder="0"></iframe>
+          </p>
+      </div>
+    </div>
+  </body>
+</html>
