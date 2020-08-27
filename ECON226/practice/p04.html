@@ -157,7 +157,11 @@
                     <iframe width='100%' height='850' scrolling='no' src='https://rdrr.io/snippets/embed/?code=%23%20Load%20ggplot2%20and%20data%0AsuppressMessages(library(tidyverse))%0Adata(%22mtcars%22)%0A%0A%23%20Calculate%20avg%20mpg%20by%20number%20of%20cylinders%0Ampg.avg%20%3C-%20mtcars%20%25%3E%25%20group_by(cyl)%20%25%3E%25%20summarize(mpg_cyl%20%3D%20mean(mpg))%0A%0Abarplot(height%20%3D%20mpg.avg%24mpg_cyl%2C%20names.arg%20%3D%20mpg.avg%24cyl)' frameborder='0'></iframe>
                     </p>
                 <h3>Let’s make the bar plot better</h3>
-            
+                    <p>Let’s fix the y-axis, we can do this by setting the <code>ylim</code> argument. <code>ylim</code> is a vector, list of numbers, with the first number being the lower limit for the y-axis and the second number being the upper limit for the y-axis. The combine function, <code>c()</code> is used for this. Let’s set the upper and lower limits of the y-axis to 0 and 30, respectively.</p>
+
+                    <p><BLOCKQUOTE><code>ylim = c(0,30)</code></BLOCKQUOTE></p>
+
+                    <p>Now add in all the arguments we have discussed previously, and you get a pretty cool bar chart. Click the Run button below the code window to see the R output.</p>
                     <p> 
                     <iframe width='100%' height='1000' scrolling='no' src='https://rdrr.io/snippets/embed/?code=suppressMessages(library(tidyverse))%0Adata(%22mtcars%22)%0Ampg.avg%20%3C-%20mtcars%20%25%3E%25%20group_by(cyl)%20%25%3E%25%20summarize(mpg_cyl%20%3D%20mean(mpg))%0A%0Ampg.avg.barplot%20%3C-%20barplot(height%20%3D%20mpg.avg%24mpg_cyl%2C%20%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20names.arg%20%3D%20mpg.avg%24cyl%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20main%3D%22Average%20MPG%20by%20Number%20of%20Cylinders%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20xlab%3D%22Number%20of%20Cylinders%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20ylab%3D%22Average%20MPG%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20ylim%20%3D%20c(0%2C30))%0A%0Ampg.avg.barplot%20%3C-%20text(x%3Dmpg.avg.barplot%2C%20%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20y%3Dmpg.avg%24mpg_cyl%2B2%2C%20%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20labels%3Das.character(round(mpg.avg%24mpg_cyl%2C2)))%0Ampg.avg.barplot'  frameborder='0'></iframe>
                     </p>
@@ -204,26 +208,23 @@
         <p> Use R to complete the following activities
           (this is just for practice you do not need to turn anything in). </p>
         <ol>
-          <li>Plot values1 vs. year. Put year on the
-            x-axis and values1 on the y-axis</li>
-          <li>Add points to the plot.</li>
+          <li>Use the <code>mtcars</code> dataset to calulate the average horsepower, <code>hp</code>, by number of cylinders.</li>
+          <li>Make a bar plot of the average horsepower by the number of cylinders.</li>
+          <li>Add data labels to each bar in the plot.</li>
         </ol>
+               <p>
+          <button class="button" onclick="var ifr=document.getElementsByName('student_r')[0]; ifr.src=ifr.src;">Reset
+          Your R Window</button>
+          </p>
       </div>
     </div>
     <div class="row">
-      <div class="column left">
-        <p class="unselectable" id="rcorners"> <code> # Question 1 <br>
-            plot(x = year, y = values1, type='l')<br>
-            <br>
-            # Question 2 <br>
-            points(x = year, y = values1) <br>
-          </code> </p>
-        <button class="button" onclick="var ifr=document.getElementsByName('student_r')[0]; ifr.src=ifr.src;">Reset
-          Your R Window</button> </div>
-      <div class="column right">
+      <div class="column full">
+     
         <p> 
-          <iframe class="r_iframe" name="student_r" src='https://rdrr.io/snippets/embed/?code=data%20%3C-%20data.frame(year%3Dc(1960%3A2019)%2C%0A%20%20%20%20values1%20%3D%20runif(60%2C%20-1%2C%201)%20*%2010%20%2B%201%3A60)%0Aattach(data)%0A' frameborder="0"></iframe>
+          <iframe class="r_iframe" name="student_r" src='https://rdrr.io/snippets/embed/?code=%23%20Load%20ggplot2%20and%20data%0AsuppressMessages(library(tidyverse))%0Adata(%22mtcars%22)%0A' frameborder="0"></iframe>
           </p>
+          
       </div>
     </div>
   </body>
