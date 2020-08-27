@@ -96,7 +96,7 @@
         <h2> Directions </h2>
         <hr>
         <p> In this practice exercise, you will load data into R, and create a
-          bor plot. </p>
+          bar plot. Watch the VoiceThread and then work through the practice.</p>
       </div>
     </div>
     <div class="row">
@@ -160,6 +160,29 @@
                     <p>Let’s fix the y-axis, we can do this by setting the <code>ylim</code> argument. <code>ylim</code> is a vector, list of numbers, with the first number being the lower limit for the y-axis and the second number being the upper limit for the y-axis. The combine function, <code>c()</code> is used for this. Let’s set the upper and lower limits of the y-axis to 0 and 30, respectively.</p>
 
                     <p><BLOCKQUOTE><code>ylim = c(0,30)</code></BLOCKQUOTE></p>
+
+                    <p>The final feature we can add to this plot is data labels. We do this with the <code>text()</code> command. The first step is to store our plot in an object,</p>
+
+                    <p><BLOCKQUOTE><code>
+                        <mark>mpg.avg.barplot &lt-</mark> barplot(height = mpg.avg$mpg_cyl ...
+                    </code></BLOCKQUOTE></p>
+
+                    <p>Next we need to pass the plot, the data labels, and where we want the labels to appear to the <code>text()</code> command. The three arguments are:</p>
+
+                    <ol>
+                        <li><code>x</code> in which we pass the plot object, i.e. <code>mpg.avg.barplot</code>.</li>
+                        <li><code>y</code> in which we pass the how high on the plot we want the labels. We can use the hight of each bar, i.e. <code>mpg.avg$mpg_cyl</code>, plus a little to put the labels above the bars.</li>
+                        <li><code>labels</code> in which we pass the label for each bar.</li>
+                    </ol>
+
+                    <p>The labels should be the average miles per gallon by the number of cylinders, but there are two problems: thes are numbers, not text, and they have a lot of digits past the decimal point. To solve this we use <code>round(mpg.avg$mpg_cyl,2</code> to round to the thousandths place and <code>as.character()</code> to make R treat these numbers as text. So put it all together and we have </p>
+
+                    <p><BLOCKQUOTE><code>
+                    mpg.avg.barplot &lt- text(x=mpg.avg.barplot, y=mpg.avg$mpg_cyl+2, labels=as.character(round(mpg.avg$mpg_cyl,2)))
+                    </code></BLOCKQUOTE></p>
+
+                    <p>WARNING! Keeping the parenthesis paired correctly in a compound statement like this can be difficult.</p>
+
 
                     <p>Now add in all the arguments we have discussed previously, and you get a pretty cool bar chart. Click the Run button below the code window to see the R output.</p>
                     <p> 
