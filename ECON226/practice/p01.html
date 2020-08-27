@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Practice: First look at R</title>
+    <style>
+* {
+  box-sizing: border-box;
+}
+
+/* Create two equal columns that floats next to each other */
+.column {
+  padding: 10px;
+  overflow: auto;
+}
+    
+.left {
+  float: left;
+  width: 50%;
+
+}
+
+.right {
+  width: 50%;
+}
+
+.full {
+  width: 100%;
+}      
+
+.row {
+  width: 1000px;
+  padding: 10px;
+  min-height: 150; 
+}
+      
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  clear: both;
+}
+
+.r_iframe {
+  border: 0;
+  overflow: auto; 
+  width: 100%; 
+  min-height: 400px; 
+  position: relative;
+  
+}
+      
+.vt_iframe {
+  border: 0;
+  overflow: auto; 
+  width: 720;
+  height: 405;
+  position: relative;
+}
+        
+.unselectable {
+        -webkit-user-select: none;
+        -webkit-touch-callout: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+      
+.plain {
+  margin: 15px; 
+}
+
+#rcorners {
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #d3d3d3;
+  padding: 10px;  
+}
+
+.button {
+  background-color: #4CAF50;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+</style> </head>
+  <body style="    background-color: #FFFFFF;">
+    <div class="row">
+      <div class="column full">
+        <h2> Directions </h2>
+        <hr>
+        <p>In this practice, we will take a first look at R. Watch the VoiceThread and leave a comment. Then read the rest of the material.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="column full">
+        <p> <iframe src="https://voicethread.com/app/player/?threadId=15171261"
+            allowusermedia="" allowfullscreen="" allow="camera https://voicethread.com; microphone https://voicethread.com; fullscreen https://voicethread.com;"
+            height="405" frameborder="0" width="720"> </iframe> </p>
+      </div>
+    </div>
+    <div class="row">
+        <div class="column full">
+            <h2> A closer look at the code </h2>
+            <hr>
+                <p>In this practice, we will take a first look at R. Throughout the course, we will use embedded R code windows. These windows will allow you to run the R without needing to install anything on your computer. Give it a try. In the R code window below, click the green run button.</p> 
+            <iframe width='100%' height='1100' src="https://rdrr.io/snippets/embed/?code=%23%20library%0Alibrary(ggridges)%0Alibrary(ggplot2)%0Alibrary(viridis)%0Alibrary(hrbrthemes)%0A%0A%23%20Plot%0Aggplot(lincoln_weather%2C%20aes(x%20%3D%20%60Mean%20Temperature%20%5BF%5D%60%2C%20y%20%3D%20%60Month%60%2C%20fill%20%3D%20..x..))%20%2B%0A%20%20geom_density_ridges_gradient(scale%20%3D%203%2C%20rel_min_height%20%3D%200.01)%20%2B%0A%20%20scale_fill_viridis(name%20%3D%20%22Temp.%20%5BF%5D%22%2C%20option%20%3D%20%22C%22)%20%2B%0A%20%20labs(title%20%3D%20'Temperatures%20in%20Lincoln%20NE%20in%202016')%20%2B%0A%20%20theme_ipsum()%20%2B%0A%20%20%20%20theme(%0A%20%20%20%20%20%20legend.position%3D%22none%22%2C%0A%20%20%20%20%20%20panel.spacing%20%3D%20unit(0.1%2C%20%22lines%22)%2C%0A%20%20%20%20%20%20strip.text.x%20%3D%20element_text(size%20%3D%208)%0A%20%20%20%20)" frameborder='0'></iframe>
+        </div>
+    </div>
+    <div class="row">
+      <div class="column full">
+        <h2> Now you try </h2>
+        <hr>
+          <p>Each practice will give you a chance to try out what you have learned. Here is an example: (Feel free to try adding some code. If you mess it up, just hit the green reset button.)</p>
+        <p> Use R to complete the following activities
+          (this is just for practice you do not need to turn anything in). </p>
+        <ol>
+          <li>Use the <code>mtcars</code> dataset to calulate the average horsepower, <code>hp</code>, by number of cylinders.</li>
+          <li>Make a bar plot of the average horsepower by the number of cylinders.</li>
+          <li>Add data labels to each bar in the plot.</li>
+        </ol>
+               <p>
+          <button class="button" onclick="var ifr=document.getElementsByName('student_r')[0]; ifr.src=ifr.src;">Reset
+          Your R Window</button>
+          </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="column full">
+     
+        <p> 
+          <iframe class="r_iframe" name="student_r" src='https://rdrr.io/snippets/embed/?code=%23%20Load%20ggplot2%20and%20data%0AsuppressMessages(library(tidyverse))%0Adata(%22mtcars%22)%0Ahead(mtcars)%0A?mtcars%0A' frameborder="0"></iframe>
+          </p>
+          
+      </div>
+    </div>
+  </body>
+</html>
