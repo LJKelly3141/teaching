@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Practice: Boxplots in R</title>
+    <style>
+* {
+  box-sizing: border-box;
+}
+
+/* Create two equal columns that floats next to each other */
+.column {
+  padding: 10px;
+  overflow: auto;
+}
+    
+.left {
+  float: left;
+  width: 40%;
+
+}
+
+.right {
+  width: 60%;
+}
+
+.full {
+  width: 100%;
+}      
+
+.row {
+  width: 1000px;
+  padding: 10px;
+  min-height: 150; 
+}
+      
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  clear: both;
+}
+
+.r_iframe {
+  border: 0;
+  overflow: auto; 
+  width: 100%; 
+  min-height: 400px; 
+  position: relative;
+  
+}
+      
+.vt_iframe {
+  border: 0;
+  overflow: auto; 
+  width: 720;
+  height: 405;
+  position: relative;
+}
+        
+.unselectable {
+        -webkit-user-select: none;
+        -webkit-touch-callout: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+      
+.plain {
+  margin: 15px; 
+}
+
+#rcorners {
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #d3d3d3;
+  padding: 10px;  
+}
+
+.button {
+  background-color: #4CAF50;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+</style> </head>
+  <body style="    background-color: #FFFFFF;">
+    <div class="row">
+      <div class="column full">
+        <h2>Directions</h2>
+        <hr>
+        <p>In this practice exercise, you will load data into R, and create a
+          boxplot. </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="column full">
+        <p> <iframe src="https://voicethread.com/app/player/?threadId=15107802"
+            allowusermedia="" allowfullscreen="" allow="camera https://voicethread.com; microphone https://voicethread.com; fullscreen https://voicethread.com;"
+            height="405" frameborder="0" width="720"> </iframe> </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="column full">
+        <h2> R code used in the VoiceThread </h2>
+        <p class="unselectable" id="rcorners"> <code> 
+            # Loads the tidyverse package <br>
+            library(tidyverse) <br>
+            colors  &lt- c("#FFFFFF","#F5FCC2","#E0ED87","#CCDE57","#B3C732","#94A813","#718200")<br>
+            <br>
+            # Boxplot in base R<br>
+            boxplot(data$price)<br>
+            <br>
+            # Boxplot in ggplot2<br>
+            data %&gt% ggplot(aes(y = price)) + <br>
+                     geom_boxplot() + <br>
+                     theme(axis.text.x = element_blank(),<br>
+                           axis.ticks.x = element_blank())<br>
+            <br>
+            # Side-by-side boxplots in base R<br>
+            boxplot(data$price ~ data$color)<br>
+            <br>
+            # Side-by-side boxplots in ggplot2<br>
+            data %&gt% ggplot(aes(x = color, y = price, fill = color)) +<br> 
+                     geom_boxplot() +<br>
+                     scale_fill_manual(values = colors)<br>
+          </code> </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="column full">
+        <h2> Now you try </h2>
+        <hr>
+        <p> Use R to complete the following activities
+          (this is just for practice you do not need to turn anything in). </p>
+        <ol>
+          <li>Plot a boxplot of <code>mpg</code> from the <code>mtcars</code> dataset.</li>
+          <li>Plot a factorized (side-by-side) boxplot of <code>mpg</code> by number of cylinders.</li>
+          <li>BONUS: Use what you have learned to add axis labels, a plot title and adjust the y-axis limits.</li>
+        </ol>
+      </div>
+    </div>
+    <div class="row">
+      <div class="column left">
+        <p class="unselectable" id="rcorners"> <code> 
+            # Question 1 <br>
+            boxplot(mtcars$mpg)<br>
+            <br>
+            # Question 2 <br>
+            boxplot(mtcars$mpg ~ mtcars$cyl)<br>
+            <br>
+            # Bonus<br>
+            boxplot(mtcars$mpg ~ mtcars$cyl, <br>
+            xlab="Number of Cylinders", <br>
+            ylab = "Miles per Gallon", <br>
+            ylim = c(0,40), <br>
+            main = "MPG by Number of Cylinders")<br>
+          </code></p>
+        <button class="button" onclick="var ifr=document.getElementsByName('student_r')[0]; ifr.src=ifr.src;">Reset
+          Your R Window</button> </div>
+      <div class="column right">
+        <p> 
+        <iframe class="r_iframe" name="student_r" src='https://rdrr.io/snippets/embed/?code=%23%20Load%20ggplot2%20and%20data%0AsuppressMessages(library(tidyverse))%0Adata(%22mtcars%22)%0A%0A' frameborder="0"></iframe>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
