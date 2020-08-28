@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Practice: Normal Distribution in R</title>
+    <style>
+* {
+  box-sizing: border-box;
+}
+
+/* Create two equal columns that floats next to each other */
+.column {
+  padding: 10px;
+  overflow: auto;
+}
+    
+.left {
+  float: left;
+  width: 50%;
+
+}
+
+.right {
+  width: 50%;
+}
+
+.full {
+  width: 100%;
+}      
+
+.row {
+  width: 1000px;
+  padding: 10px;
+  min-height: 150; 
+}
+      
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  clear: both;
+}
+
+.r_iframe {
+  border: 0;
+  overflow: auto; 
+  width: 100%; 
+  min-height: 400px; 
+  position: relative;
+  
+}
+      
+.vt_iframe {
+  border: 0;
+  overflow: auto; 
+  width: 720;
+  height: 405;
+  position: relative;
+}
+        
+.unselectable {
+        -webkit-user-select: none;
+        -webkit-touch-callout: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+      
+.plain {
+  margin: 15px; 
+}
+
+#rcorners {
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #d3d3d3;
+  padding: 10px;  
+}
+
+.button {
+  background-color: #4CAF50;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+</style> </head>
+  <body style="    background-color: #FFFFFF;">
+    <div class="row">
+      <div class="column full">
+        <h2> Directions </h2>
+        <hr>
+        <p> In this practice exercise, you will work with the normal distributionin R.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="column full">
+        <p> <iframe src="https://voicethread.com/app/player/?threadId=15107845"
+            allowusermedia="" allowfullscreen="" allow="camera https://voicethread.com; microphone https://voicethread.com; fullscreen https://voicethread.com;"
+            height="405" frameborder="0" width="720"> </iframe> </p>
+      </div>
+    </div>
+    <div class="row">
+        <div class="column full">
+            <h2> A closer look at the code </h2>
+            <hr>
+                <p>In this practice, you will learn about the <code>pnorm()</code> and <code>qnorm</code> commands. </p>
+            
+                <h3>Let's learn to use the <code>pnorm()</code> command</h3>
+                    <p>The r code window below will calculate and plot the probability that a normally distributed random variable is less than <code>value</code>. You can change the mean, standard deviation, and value.</p>
+                    <p>Experiment with the settings of mean, standard deviation, and value.</p>
+                    <p>
+                    <iframe width='100%' height='800' scrolling='no' src="https://rdrr.io/snippets/embed/?code=%23%20Parameters%20you%20can%20change%0Amean%20%3C-%2075%0Astandard.deviation%20%3C-%205%0Avalue%20%3C-%2070%0A%0A%23%20Draws%20the%20plot%0Aprob%20%3C-%20pnorm(q%20%3D%20value%2C%20mean%20%3D%20mean%2C%20sd%20%3D%20standard.deviation%2C%20lower.tail%20%3D%20T)%0Aplot.title%20%3C-%20paste(%22Lower%20tail%20probability%20%3D%20%22%2C%20format(prob%2C%20digits%3D6))%0Ax%3Dseq(mean-(standard.deviation*4)%2Cmean%2B(standard.deviation*4)%2Clength%3D200)%0Ay%3Ddnorm(x%2C%20mean%20%3D%20mean%2C%20sd%20%3D%20standard.deviation)%0Aplot(x%2Cy%2Ctype%3D%22l%22%2C%20lwd%3D2%2C%20col%3D%22blue%22%2C%20main%20%3D%20plot.title)%0Ax%3Dseq(mean-(standard.deviation*4)%2Cvalue%2Clength%3D200)%0Ay%3Ddnorm(x%2C%20mean%20%3D%20mean%2C%20sd%20%3D%20standard.deviation)%0Aabline(v=mean)%0Apolygon(c(mean-(standard.deviation*4)%2Cx%2Cvalue)%2Cc(0%2Cy%2C0)%2Ccol%3D%22gray%22)" frameborder='0'></iframe>
+                    </p>
+                    <p>You can get help on any command in R by typing '?' in font of the name of the command. Do so in the R code window below.</p>
+                    <p>
+                    <iframe width='100%' height='500' src="https://rdrr.io/snippets/embed/?code=?pnorm" frameborder='0'></iframe>
+                    </p>
+                    <p> The <code>pnorm()</code> command has four arguments that we need to be concerned about.</p>
+                    <ol>
+                        <li><code>q</code> which holds the value to find the probability of being less than or greater than</li>
+                        <li><code>mean</code> which holds the mean of the normal distribution</li>
+                        <li><code>sd</code> which holds the standard deviation of the normal distribution</li>
+                        <li><code>lower.tail</code> which is set to true for a less than calculation or false for a greater than calculation.</li>
+                    </ol>
+                    <p>Here are a few examples from the voice thread.</p>
+                    <p><blockquote><code> 
+                    # P(X &lt=  70)<br>
+                    pnorm(q=70, mean=75, sd=5, lower.tail=T)<br>
+                    <br>
+                    # P(X &gt= 85)<br>
+                    pnorm(q=85, mean=75, sd=5, lower.tail=F)<br>
+                    <br>
+                    # P(Z &gt= 1) where Z ~ N(0,1)<br>
+                    pnorm(q=1, mean=0, sd=1, lower.tail=F)<br>
+                    </code></blockquote></p>
+            
+                <h3>Let's learn to use the <code>qnorm()</code> command</h3>
+                    <p>The r code window below will calculate a value, X, such that the probability of drawing a value less than or equal to X is the probability you specify. Then the probability density function is plotted. You can change the mean, standard deviation, and value.</p>
+                    <p>Experiment with the settings of mean, standard deviation, and value.</p>
+                    <p>
+                    <iframe width='100%' height='800' scrolling='no' src="https://rdrr.io/snippets/embed/?code=%23%20Parameters %20you%20can%20change%0Amean%20%3C-%2075%0Astandard.deviation%20%3C-%205%0Aprobability%20%3C-%20.05%0A%0A%23%20Draws%20the%20plot%0Aprob%20%3C-%20probability%0Avalue%20%3C-%20qnorm(p%20%3D%20prob%2C%20mean%20%3D%20mean%2C%20sd%20%3D%20standard.deviation%2C%20lower.tail%20%3D%20T)%0Aplot.title%20%3C-%20paste(format(value%2C%20digits%3D2)%2C%22%20has%20a%20lower%20tail%20probability%20%3D%20%22%2Cformat(prob%2C%20digits%3D2))%0Ax%3Dseq(mean-(standard.deviation*4)%2Cmean%2B(standard.deviation*4)%2Clength%3D200)%0Ay%3Ddnorm(x%2C%20mean%20%3D%20mean%2C%20sd%20%3D%20standard.deviation)%0Aplot(x%2Cy%2Ctype%3D%22l%22%2C%20lwd%3D2%2C%20col%3D%22blue%22%2C%20main%20%3D%20plot.title)%0Ax%3Dseq(mean-(standard.deviation*4)%2Cvalue%2Clength%3D200)%0Ay%3Ddnorm(x%2C%20mean%20%3D%20mean%2C%20sd%20%3D%20standard.deviation)%0Aabline(v%3Dmean)%0Apolygon(c(mean-(standard.deviation*4)%2Cx%2Cvalue)%2Cc(0%2Cy%2C0)%2Ccol%3D%22gray%22)" frameborder='0'></iframe>
+                    </p>
+                    <p> The <code>pnorm()</code> command has four arguments that we need to be concerned about.</p>
+                    <ol>
+                        <li><code>v</code> which holds the probability you for witch wish to find a value.</li>
+                        <li><code>mean</code> which holds the mean of the normal distribution</li>
+                        <li><code>sd</code> which holds the standard deviation of the normal distribution</li>
+                        <li><code>lower.tail</code> which is set to true for a less than calculation or false for a greater than calculation.</li>
+                    </ol>
+                    <p>Here are a few examples from the voice thread.</p>
+                    <p><blockquote><code> 
+                    # Find the value of X such that P(X &lt=  70) = 25%<br>
+                    qnorm(p=0.25, mean=75, sd=5, lower.tail=T)<br>
+                    </code></blockquote></p>
+        </div>
+    </div>
+    <div class="row">
+      <div class="column full">
+        <h2> R code used in the VoiceThread </h2>
+        <p class="unselectable" id="rcorners"> <code> 
+            # P(X &lt=  70)<br>
+            pnorm(q=70, mean=75, sd=5, lower.tail=T)<br>
+            <br>
+            # P(X &gt= 85)<br>
+            pnorm(q=85, mean=75, sd=5, lower.tail=F)<br>
+            <br>
+            # P(Z &gt= 1) where Z ~ N(0,1)<br>
+            pnorm(q=1, mean=0, sd=1, lower.tail=F)<br>
+            <br>
+            # Find the value of X such that P(X &lt=  70) = 25%<br>
+            qnorm(p=0.25, mean=75, sd=5, lower.tail=T)<br>
+            <br>
+          </code> </p>
+      </div>
+    </div>
+  </body>
+</html>
