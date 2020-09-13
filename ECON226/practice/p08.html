@@ -12,7 +12,7 @@
 <meta name="author" content="Logan Kelly, Ph.D." />
 
 
-<title>Practice: Normal Distribution in R</title>
+<title>Practice: Student’s t Distribution in R</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -457,7 +457,7 @@ summary {
 
 
 
-<h1 class="title toc-ignore">Practice: Normal Distribution in R</h1>
+<h1 class="title toc-ignore">Practice: Student’s t Distribution in R</h1>
 <h4 class="author">Logan Kelly, Ph.D.</h4>
 
 </div>
@@ -466,74 +466,55 @@ summary {
 <div id="directions" class="section level2">
 <h2>Directions</h2>
 <hr>
-<p>In this practice exercise, you will work with the normal distributionin R.</p>
-<iframe src="https://voicethread.com/app/player/?threadId=15107845" allowusermedia allowfullscreen allow="camera https://voicethread.com; microphone https://voicethread.com; fullscreen https://voicethread.com;" height="405" frameborder="0" width="720">
+<p>In this practice exercise, you will work with the Student’s t distribution R.</p>
+<iframe width="720" height="405" src="https://uwrf.voicethread.com/app/player/?threadId=15107855" frameborder="0" allowusermedia allowfullscreen allow="camera https://uwrf.voicethread.com; microphone https://uwrf.voicethread.com; fullscreen https://uwrf.voicethread.com;">
 </iframe>
 </div>
 <div id="a-closer-look-at-the-code" class="section level2">
 <h2>A closer look at the code</h2>
 <hr>
-<p>In this practice, you will learn about the <code>pnorm()</code> and <code>qnorm</code> commands.</p>
-<div id="lets-learn-to-use-the-pnorm-command" class="section level3">
-<h3>Let’s learn to use the <code>pnorm()</code> command</h3>
-<p>The r code window below will calculate and plot the probability that a normally distributed random variable is less than <code>value</code>. You can change the mean, standard deviation, and value.</p>
-<p>Experiment with the settings of mean, standard deviation, and value.</p>
-<iframe width="100%" height="800" scrolling="no" src="https://rdrr.io/snippets/embed/?code=%23%20Parameters%20you%20can%20change%0Amean%20%3C-%2075%0Astandard.deviation%20%3C-%205%0Avalue%20%3C-%2070%0A%0A%23%20Draws%20the%20plot%0Aprob%20%3C-%20pnorm(q%20%3D%20value%2C%20mean%20%3D%20mean%2C%20sd%20%3D%20standard.deviation%2C%20lower.tail%20%3D%20T)%0Aplot.title%20%3C-%20paste(%22Lower%20tail%20probability%20%3D%20%22%2C%20format(prob%2C%20digits%3D6))%0Ax%3Dseq(mean-(standard.deviation*4)%2Cmean%2B(standard.deviation*4)%2Clength%3D200)%0Ay%3Ddnorm(x%2C%20mean%20%3D%20mean%2C%20sd%20%3D%20standard.deviation)%0Aplot(x%2Cy%2Ctype%3D%22l%22%2C%20lwd%3D2%2C%20col%3D%22blue%22%2C%20main%20%3D%20plot.title)%0Ax%3Dseq(mean-(standard.deviation*4)%2Cvalue%2Clength%3D200)%0Ay%3Ddnorm(x%2C%20mean%20%3D%20mean%2C%20sd%20%3D%20standard.deviation)%0Aabline(v=mean)%0Apolygon(c(mean-(standard.deviation*4)%2Cx%2Cvalue)%2Cc(0%2Cy%2C0)%2Ccol%3D%22gray%22)" frameborder="0">
+<p>In this practice, you will learn about the <code>pt()</code> and <code>qt()</code> commands.</p>
+<div id="lets-learn-to-use-the-pt-command" class="section level3">
+<h3>Let’s learn to use the <code>pt()</code> command</h3>
+<p>You can get help on any command in R by typing <code>?</code> in front of the name of the command. Do so in the R code window below.</p>
+<iframe width="100%" height="500" src="https://rdrr.io/snippets/embed/?code=?pt" frameborder="0">
 </iframe>
-<p>You can get help on any command in R by typing <code>?</code> in font of the name of the command. Do so in the R code window below.</p>
-<iframe width="100%" height="500" src="https://rdrr.io/snippets/embed/?code=?pnorm" frameborder="0">
-</iframe>
-<p>The <code>pnorm()</code> command has four arguments that we need to be concerned about.</p>
+<p>The <code>pt()</code> command has three arguments that we need to be concerned about.</p>
 <ul>
 <li><code>q</code> which holds the value to find the probability of being less than or greater than</li>
-<li><code>mean</code> which holds the mean of the normal distribution</li>
-<li><code>sd</code> which holds the standard deviation of the normal distribution</li>
+<li><code>df</code> which holds the number of degrees of freedom</li>
 <li><code>lower.tail</code> which is set to true for a less than calculation or false for a greater than calculation.</li>
 </ul>
-<p>Here are a few examples from the voice thread.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="co"># P(X &lt;=  70)</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="kw">pnorm</span>(<span class="dt">q=</span><span class="dv">70</span>, <span class="dt">mean=</span><span class="dv">75</span>, <span class="dt">sd=</span><span class="dv">5</span>, <span class="dt">lower.tail=</span>T)</span></code></pre></div>
-<pre><code>## [1] 0.1586553</code></pre>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="co"># P(X &gt;= 85)</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="kw">pnorm</span>(<span class="dt">q=</span><span class="dv">85</span>, <span class="dt">mean=</span><span class="dv">75</span>, <span class="dt">sd=</span><span class="dv">5</span>, <span class="dt">lower.tail=</span>F)</span></code></pre></div>
-<pre><code>## [1] 0.02275013</code></pre>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="co"># P(Z &gt;= 1) where Z ~ N(0,1)</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a><span class="kw">pnorm</span>(<span class="dt">q=</span><span class="dv">1</span>, <span class="dt">mean=</span><span class="dv">0</span>, <span class="dt">sd=</span><span class="dv">1</span>, <span class="dt">lower.tail=</span>F)</span></code></pre></div>
-<pre><code>## [1] 0.1586553</code></pre>
+<p>Student’s t-distribution has a mean of zero and a standard deviation of one. Here are a few examples.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="co"># P(X &lt;=  0.25) where X ~ t(20)</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="kw">pt</span>(<span class="dt">q=</span><span class="fl">0.25</span>, <span class="dt">df=</span><span class="dv">20</span>, <span class="dt">lower.tail=</span>T)</span></code></pre></div>
+<pre><code>## [1] 0.5974313</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="co"># P(X &gt;=  -0.1) where X ~ t(100)</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="kw">pt</span>(<span class="dt">q=</span><span class="op">-</span><span class="fl">0.1</span>, <span class="dt">df=</span><span class="dv">100</span>, <span class="dt">lower.tail=</span>F)</span></code></pre></div>
+<pre><code>## [1] 0.5397277</code></pre>
 </div>
 </div>
-<div id="lets-learn-to-use-the-qnorm-command" class="section level2">
-<h2>Let’s learn to use the <code>qnorm()</code> command</h2>
-<p>The r code window below will calculate a value, X, such that the probability of drawing a value less than or equal to X is the probability you specify. Then the probability density function is plotted. You can change the mean, standard deviation, and value.</p>
-<p>Experiment with the settings of mean, standard deviation, and value.</p>
-<iframe width="100%" height="800" scrolling="no" src="https://rdrr.io/snippets/embed/?code=%23%20Parameters %20you%20can%20change%0Amean%20%3C-%2075%0Astandard.deviation%20%3C-%205%0Aprobability%20%3C-%20.05%0A%0A%23%20Draws%20the%20plot%0Aprob%20%3C-%20probability%0Avalue%20%3C-%20qnorm(p%20%3D%20prob%2C%20mean%20%3D%20mean%2C%20sd%20%3D%20standard.deviation%2C%20lower.tail%20%3D%20T)%0Aplot.title%20%3C-%20paste(format(value%2C%20digits%3D2)%2C%22%20has%20a%20lower%20tail%20probability%20%3D%20%22%2Cformat(prob%2C%20digits%3D2))%0Ax%3Dseq(mean-(standard.deviation*4)%2Cmean%2B(standard.deviation*4)%2Clength%3D200)%0Ay%3Ddnorm(x%2C%20mean%20%3D%20mean%2C%20sd%20%3D%20standard.deviation)%0Aplot(x%2Cy%2Ctype%3D%22l%22%2C%20lwd%3D2%2C%20col%3D%22blue%22%2C%20main%20%3D%20plot.title)%0Ax%3Dseq(mean-(standard.deviation*4)%2Cvalue%2Clength%3D200)%0Ay%3Ddnorm(x%2C%20mean%20%3D%20mean%2C%20sd%20%3D%20standard.deviation)%0Aabline(v%3Dmean)%0Apolygon(c(mean-(standard.deviation*4)%2Cx%2Cvalue)%2Cc(0%2Cy%2C0)%2Ccol%3D%22gray%22)" frameborder="0">
-</iframe>
-<p>The <code>pnorm()</code> command has four arguments that we need to be concerned about.</p>
+<div id="lets-learn-to-use-the-qt-command" class="section level2">
+<h2>Let’s learn to use the <code>qt()</code> command</h2>
+<p>The <code>qt()</code> command has three arguments that we need to be concerned about.</p>
 <ul>
-<li><code>v</code> which holds the probability you for witch wish to find a value.</li>
-<li><code>mean</code> which holds the mean of the normal distribution</li>
-<li><code>sd</code> which holds the standard deviation of the normal distribution</li>
+<li><code>p</code> which holds the value for which you wish to find a probability.</li>
+<li><code>df</code> which holds the number of degrees of freedom</li>
 <li><code>lower.tail</code> which is set to true for a less than calculation or false for a greater than calculation.</li>
 </ul>
-<p>Here are a few examples from the voice thread.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="co"># Find the value of X such that P(X &lt;=  70) = 25%</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a><span class="kw">qnorm</span>(<span class="dt">p=</span><span class="fl">0.25</span>, <span class="dt">mean=</span><span class="dv">75</span>, <span class="dt">sd=</span><span class="dv">5</span>, <span class="dt">lower.tail=</span>T)</span></code></pre></div>
-<pre><code>## [1] 71.62755</code></pre>
+<p>Here is an example from the voice thread.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="co"># Find the value of Z such that P(X &lt;=  Z) = 25% where X ~ t(25)</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a><span class="kw">qt</span>(<span class="dt">p=</span><span class="fl">0.25</span>, <span class="dt">df=</span><span class="dv">25</span>, <span class="dt">lower.tail=</span>T)</span></code></pre></div>
+<pre><code>## [1] -0.68443</code></pre>
 </div>
 <div id="r-code-used-in-the-voicethread" class="section level2">
 <h2>R code used in the VoiceThread</h2>
 <hr>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a><span class="co"># P(X &lt;= 70)</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true"></a><span class="kw">pnorm</span>(<span class="dt">q=</span><span class="dv">70</span>, <span class="dt">mean=</span><span class="dv">75</span>, <span class="dt">sd=</span><span class="dv">5</span>, <span class="dt">lower.tail=</span>T)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true"></a><span class="co"># P(X &gt;= 85)</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true"></a><span class="kw">pnorm</span>(<span class="dt">q=</span><span class="dv">85</span>, <span class="dt">mean=</span><span class="dv">75</span>, <span class="dt">sd=</span><span class="dv">5</span>, <span class="dt">lower.tail=</span>F)</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true"></a></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true"></a><span class="co"># P(Z &gt;= 1) where Z ~ N(0,1)</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true"></a><span class="kw">pnorm</span>(<span class="dt">q=</span><span class="dv">1</span>, <span class="dt">mean=</span><span class="dv">0</span>, <span class="dt">sd=</span><span class="dv">1</span>, <span class="dt">lower.tail=</span>F)</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true"></a></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true"></a><span class="co"># Find the value of X such that P(X &lt;= 70) = 25%</span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true"></a><span class="kw">qnorm</span>(<span class="dt">p=</span><span class="fl">0.25</span>, <span class="dt">mean=</span><span class="dv">75</span>, <span class="dt">sd=</span><span class="dv">5</span>, <span class="dt">lower.tail=</span>T)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="co"># P(X &lt;= 2.3) where X ~ t(5)</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a><span class="kw">pt</span>(<span class="fl">2.3</span>,<span class="dv">5</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true"></a><span class="co"># Find the value of X such that the area to the left of X is 0.05 where X ~ t(46)</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true"></a><span class="kw">qt</span>(<span class="fl">0.05</span>, <span class="dv">46</span>)</span></code></pre></div>
 </div>
 <div id="now-you-try" class="section level2">
 <h2>Now you try</h2>
