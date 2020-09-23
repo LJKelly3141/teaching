@@ -497,9 +497,9 @@ summary {
 <p>The <code>sd()</code> command can be used to find the standard deviation. The <code>length()</code> command can be use to determine the sample size.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a>sample.n &lt;-<span class="st"> </span><span class="kw">length</span>(mtcars<span class="op">$</span>mpg)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a>sample.sd &lt;-<span class="st"> </span><span class="kw">sd</span>(mtcars<span class="op">$</span>mpg)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a>sample.se &lt;-<span class="st"> </span>sample.sd<span class="op">/</span><span class="kw">sqrt</span>(sample.sd)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a>sample.se &lt;-<span class="st"> </span>sample.sd<span class="op">/</span><span class="kw">sqrt</span>(sample.n)</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a><span class="kw">print</span>(sample.se)</span></code></pre></div>
-<pre><code>## [1] 2.454984</code></pre>
+<pre><code>## [1] 1.065424</code></pre>
 </div>
 <div id="step-3-find-the-t-score-that-corresponds-to-the-confidence-level" class="section level4">
 <h4>Step 3: Find the t-score that corresponds to the confidence level</h4>
@@ -518,7 +518,7 @@ summary {
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a>  lower.bound &lt;-<span class="st"> </span>sample.mean <span class="op">-</span><span class="st"> </span>margin.error</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true"></a>  upper.bound &lt;-<span class="st"> </span>sample.mean <span class="op">+</span><span class="st"> </span>margin.error</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true"></a>  <span class="kw">print</span>(<span class="kw">c</span>(lower.bound,upper.bound))</span></code></pre></div>
-<pre><code>## [1] 15.08365 25.09760</code></pre>
+<pre><code>## [1] 17.91768 22.26357</code></pre>
 </div>
 </div>
 </div>
@@ -561,6 +561,7 @@ summary {
 <h2>Now you try</h2>
 <hr>
 <p>Use R to complete the following activities (this is just for practice you do not need to turn anything in).</p>
+<p>Using the mtcars data set, find a 95% confidence interval for the average horsepower, <code>hp</code>.</p>
 <iframe class="r_iframe" name="student_r" src="https://rdrr.io/snippets/embed/?code=" height="600" frameborder="0" width="720">
 </iframe>
 <button class="button" onclick="var ifr=document.getElementsByName(&#39;student_r&#39;)[0]; ifr.src=ifr.src;">
